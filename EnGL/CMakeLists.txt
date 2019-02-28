@@ -3,6 +3,7 @@ project(EnGL)
 
 # Bring in Headers
 include_directories(include)
+include_directories(res/*)
 
 file(GLOB SOURCES "src/*/*.cpp")
 file(GLOB RESOURCES "res/*.cpp")
