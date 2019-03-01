@@ -2,15 +2,18 @@
 
 #ifdef EGL_PLATFORM_WINDOWS
 
-extern EnGL::Application* EnGL::CreateApplication();
+	extern EnGL::Application* EnGL::CreateApplication();
 
-int main(int argc, char** argv)
-{
-	auto app = EnGL::CreateApplication();
-	app->Run();
-	delete app;
-}
+	int main(int argc, char** argv)
+	{
+		EnGL::Log::Init();
+		EnGL::Log::GetCoreLogger()->warn("Initialized Core Log");
+		EnGL::Log::GetClientLogger()->info("Initialized Client Log");
 
-#else
-	#error EGL Only Suppoted on Windows
+		printf("EnGL Version Zero\n");
+		auto app = EnGL::CreateApplication();
+		app->Run();
+		delete app;
+	}
+
 #endif

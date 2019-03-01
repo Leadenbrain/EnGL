@@ -6,9 +6,7 @@
 	#else
 		#define EGL_API __declspec(dllimport)
 	#endif
-#endif
-
-#ifdef EGL_PLATFORM_LINUX
+#elif EGL_PLATFORM_LINUX
 	#define EGL_API
 #else
 	#error Windows is the only supported Platform
