@@ -19,6 +19,6 @@ if (UNIX)
 endif (UNIX)
 
 add_library (EnGL SHARED ${SOURCES} ${RESOUCES} ${INCLUDES})
-add_library (EnGLs STATIC ${SOURCES} ${RESOUCES} ${INCLUDES})
+#add_library (EnGLs STATIC ${SOURCES} ${RESOUCES} ${INCLUDES})
 
 install(TARGETS EnGL DESTINATION ${CMAKE_CURRENT_SOURCE_DIR}/../Penumbra/build)

@@ -8,9 +8,8 @@
 	{
 		EnGL::Log::Init();
 		EGL_CORE_WARN("Initialized Core Log");
-		EGL_CLIENT_INFO("Initialized Client Log");
+		EGL_INFO("Initialized Client Log");
 
-		printf("EnGL Version Zero\n");
 		auto app = EnGL::CreateApplication();
 		app->Run();
 		delete app;
