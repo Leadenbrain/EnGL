@@ -7,8 +7,8 @@
 	int main(int argc, char** argv)
 	{
 		EnGL::Log::Init();
-		EnGL::Log::GetCoreLogger()->warn("Initialized Core Log");
-		EnGL::Log::GetClientLogger()->info("Initialized Client Log");
+		EGL_CORE_WARN("Initialized Core Log");
+		EGL_CLIENT_INFO("Initialized Client Log");
 
 		printf("EnGL Version Zero\n");
 		auto app = EnGL::CreateApplication();

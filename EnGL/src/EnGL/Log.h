@@ -18,3 +18,15 @@ namespace EnGL {
 		static std::shared_ptr<spdlog::logger> s_ClientLogger;
 	};
 }
+
+#define EGL_CORE_FATAL(...) 	::EnGL::Log::GetCoreLogger()->fatal(__VA_ARGS__)
+#define EGL_CORE_ERROR(...) 	::EnGL::Log::GetCoreLogger()->error(__VA_ARGS__)
+#define EGL_CORE_WARN(...) 		::EnGL::Log::GetCoreLogger()->warn(__VA_ARGS__)\
+#define EGL_CORE_INFO(...) 		::EnGL::Log::GetCoreLogger()->info(__VA_ARGS__)
+#define EGL_CORE_TRACE(...) 	::EnGL::Log::GetCoreLogger()->trace(__VA_ARGS__)
+
+#define EGL_CLIENT_FATAL(...) 	::EnGL::Log::GetClientLogger()->fatal(__VA_ARGS__)
+#define EGL_CLIENT_ERROR(...) 	::EnGL::Log::GetClientLogger()->error(__VA_ARGS__)
+#define EGL_CLIENT_WARN(...) 		::EnGL::Log::GetClientLogger()->warn(__VA_ARGS__)\
+#define EGL_CLIENT_INFO(...) 		::EnGL::Log::GetClientLogger()->info(__VA_ARGS__)
+#define EGL_CLIENT_TRACE(...) 	::EnGL::Log::GetClientLogger()->trace(__VA_ARGS__)
