@@ -1,3 +1,6 @@
 [submodule "spdlog"]
 	path = EnGL/res/spdlog
 	url = https://github.com/gabime/spdlog
+[submodule "EnGL/res/include/GLFW"]
+	path = EnGL/res/GLFW
+	url = https://github.com/glfw/glfw
