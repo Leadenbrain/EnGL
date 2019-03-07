@@ -2,8 +2,6 @@
 
 #include "Event.h"
 
-#include <sstream>
-
 namespace EnGL {
 	
 	class EGL_API KeyEvent : public Event

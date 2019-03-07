@@ -1,10 +1,7 @@
 #pragma once
 
+#include "../eglpch.h"
 #include "../Core.h"
-
-#include <string>
-#include <sstream>
-#include <functional>
 
 namespace EnGL {
 

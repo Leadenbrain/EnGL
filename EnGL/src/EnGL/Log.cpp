@@ -1,4 +1,4 @@
-#include "Log.h"
+#include "eglpch.h"
 #include "spdlog/sinks/stdout_color_sinks.h"
 
 namespace EnGL {

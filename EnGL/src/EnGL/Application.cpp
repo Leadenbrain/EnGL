@@ -1,13 +1,17 @@
+#include "eglpch.h"
 #include "Application.h"
 
 #include "Events/ApplicationEvent.h"
 #include "Log.h"
 
+#define GLFW_DLL
+#include <GLFW/glfw3.h>
+
 namespace EnGL {
 	
 	Application::Application()
 	{
-
+		m_Window = std::unique_ptr<Window>(Window::Create());
 	}
 
 	Application::~Application()
@@ -17,16 +21,12 @@ namespace EnGL {
 
 	void Application::Run()
 	{
-		WindowResizeEvent e(1280, 720);
-		if (e.IsInCategory(EventCategoryApplication))
+		while (m_Running)
 		{
-			EGL_TRACE(e);
+			glClearColor(1,0,1,1);
+			glClear(GL_COLOR_BUFFER_BIT);
+			m_Window->OnUpdate();
 		}
-		if (e.IsInCategory(EventCategoryInput))
-		{
-			EGL_TRACE(e);
-		}
-		while (true);
 	}
 	
 }

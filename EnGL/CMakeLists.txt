@@ -3,8 +3,21 @@ project(EnGL)
 
 # Bring in Headers
 include_directories(include res/spdlog/include)
-file(GLOB INCLUDES "res/spdlog/include/spdlog/*.h")
+SET(INCLUDES "src/EnGL/eglpch.h")
+file(GLOB INCLUDES_ADD "res/spdlog/include/spdlog/*.h")
+LIST(APPEND ${INCLUDES} ${INCLUDES_ADD})
 
+#find_package(OpenGL REQUIRED)
+#find_package(glfw REQUIRED)
+
+#Libraries
+#SET(PROJECT_LINK_LIBS "glfw3dll opgengl32 glew32 glu32")
+#set(CMAKE_CXX_FLAGS "-fPIC -L\"C:\\MinGW\\mingw64\\lib\" -lopengl32 -lglu32 -lglew32 -lglfw3dll")
+link_directories("C:\\MinGW\\mingw64\\lib")
+link_libraries(opengl32)
+link_libraries(glfw3dll)
+
+SET(PCH "src/EnGL/eglpch.cpp")
 file(GLOB SOURCES "src/*/*.cpp")
 file(GLOB RESOURCES "res/*.cpp")
 
@@ -18,7 +31,7 @@ if (UNIX)
 	add_definitions(-DEGL_PLATFORM_LINUX)
 endif (UNIX)
 
-add_library (EnGL SHARED ${SOURCES} ${RESOUCES} ${INCLUDES})
-#add_library (EnGLs STATIC ${SOURCES} ${RESOUCES} ${INCLUDES})
+add_library (EnGL SHARED ${PCH} ${SOURCES} ${RESOUCES} ${INCLUDES})
+#add_library (EnGL STATIC ${PCH} ${SOURCES} ${RESOUCES} ${INCLUDES})
 
 install(TARGETS EnGL DESTINATION ${CMAKE_CURRENT_SOURCE_DIR}/../Penumbra/build)
