@@ -4,7 +4,7 @@ project(EnGL)
 # Bring in Headers
 include_directories(include res/spdlog/include)
 SET(INCLUDES "src/EnGL/eglpch.h")
-file(GLOB INCLUDES_ADD "res/spdlog/include/spdlog/*.h")
+file(GLOB INCLUDES_ADD "res/spdlog/include/spdlog/*.h include/*/*.h")
 LIST(APPEND ${INCLUDES} ${INCLUDES_ADD})
 
 #Libraries
