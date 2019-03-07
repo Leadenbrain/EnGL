@@ -7,12 +7,7 @@ SET(INCLUDES "src/EnGL/eglpch.h")
 file(GLOB INCLUDES_ADD "res/spdlog/include/spdlog/*.h")
 LIST(APPEND ${INCLUDES} ${INCLUDES_ADD})
 
-#find_package(OpenGL REQUIRED)
-#find_package(glfw REQUIRED)
-
 #Libraries
-#SET(PROJECT_LINK_LIBS "glfw3dll opgengl32 glew32 glu32")
-#set(CMAKE_CXX_FLAGS "-fPIC -L\"C:\\MinGW\\mingw64\\lib\" -lopengl32 -lglu32 -lglew32 -lglfw3dll")
 link_directories("C:\\MinGW\\mingw64\\lib")
 link_libraries(opengl32)
 link_libraries(glfw3dll)
