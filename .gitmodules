@@ -4,3 +4,6 @@
 [submodule "EnGL/res/include/GLFW"]
 	path = EnGL/res/GLFW
 	url = https://github.com/glfw/glfw
+[submodule "EnGL\\res\\imgui"]
+	path = EnGL\\res\\imgui
+	url = https://github.com/TheCherno/imgui
