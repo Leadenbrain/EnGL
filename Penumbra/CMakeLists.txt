@@ -6,13 +6,11 @@ link_directories( ../EnGL/build )
 link_directories("C:\\MinGW\\mingw64\\lib")
 link_libraries(opengl32)
 link_libraries(glfw3dll)
+link_libraries(libglad.a)
 
 # Bring in Headers
-SET(INCLUDES "../EnGL/src/EnGL/eglpch.h")
-file(GLOB INCLUDES_1 "../EnGL/src/*.h")
-file(GLOB INCLUDES_2 "../EnGL/res/spdlog/include/spdlog/*.h")
-include_directories(include ../EnGL/src ../EnGL/res/spdlog/include)
-LIST(APPEND ${INCLUDES} ${INCLUDES_1} ${INLUDES_2})
+SET(INCLUDES "../EnGL/src/EnGL/eglpch.h ../EnGL/src/*.h ../EnGL/res/spdlog/include/spdlog/*.h")
+include_directories(include ../EnGL/src ../EnGL/res/include)
 
 SET(PCH "../EnGL/src/EnGL/eglpch.cpp")
 file(GLOB SOURCES "src/*.cpp")

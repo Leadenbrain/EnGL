@@ -14,6 +14,8 @@
 
 #include "Log.h"
 
+#include <glad/glad.h>
+
 #ifdef EGL_PLATFORM_WINDOWS
 	#include <Windows.h>
 #endif

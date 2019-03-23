@@ -4,7 +4,7 @@
 #include "Events/ApplicationEvent.h"
 #include "Log.h"
 
-#include <glad/glad.h>
+//#include <glad/glad.h>
 
 namespace EnGL {
 
