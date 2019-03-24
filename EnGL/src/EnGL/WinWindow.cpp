@@ -122,7 +122,7 @@ namespace EnGL{
 				}
 				case GLFW_RELEASE:
 				{
-					MouseButtonPressedEvent event(button);
+					MouseButtonReleasedEvent event(button);
 					data.EventCallback(event);
 					break;
 				}
