@@ -27,6 +27,7 @@ public:
 	Penumbra()
 	{
 		PushLayer(new ExampleLayer());
+		PushOverlay(new EnGL::ImGuiLayer());
 	}
 
 	~Penumbra()

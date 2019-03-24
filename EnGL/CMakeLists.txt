@@ -2,9 +2,9 @@ cmake_minimum_required(VERSION 2.8.9)
 project(EnGL)
 
 # Bring in Headers
-include_directories(include "res/include/" )
+include_directories(include "res/include/" "src/Platform/OpenGL/")
 SET(INCLUDES "src/EnGL/eglpch.h")
-file(GLOB INCLUDES_ADD "res/spdlog/include/spdlog/*.h include/*/*.h")
+file(GLOB INCLUDES_ADD "res/spdlog/include/spdlog/*.h res/*/*.h src/Platform/OpenGL/*.h src/EnGL/ImGui/*.h")
 LIST(APPEND ${INCLUDES} ${INCLUDES_ADD})
 
 #Libraries
@@ -15,7 +15,9 @@ link_libraries(libglad.a)
 
 SET(PCH "src/EnGL/eglpch.cpp")
 file(GLOB SOURCES "src/*/*.cpp")
+file(GLOB PLATFORM "src/*/*/*.cpp")
 file(GLOB RESOURCES "res/*.cpp")
+file(GLOB IMGUI "res/imgui/*.cpp")
 
 if (WIN32)
 	add_definitions(-DEGL_PLATFORM_WINDOWS)
@@ -27,7 +29,7 @@ if (UNIX)
 	add_definitions(-DEGL_PLATFORM_LINUX)
 endif (UNIX)
 
-add_library (EnGL SHARED ${PCH} ${SOURCES} ${RESOUCES} ${INCLUDES})
+add_library (EnGL SHARED ${PCH} ${SOURCES} ${PLATFORM} ${RESOUCES} ${IMGUI} ${INCLUDES})
 #add_library (EnGL STATIC ${PCH} ${SOURCES} ${RESOUCES} ${INCLUDES})
 
 install(TARGETS EnGL DESTINATION ${CMAKE_CURRENT_SOURCE_DIR}/../Penumbra/build)

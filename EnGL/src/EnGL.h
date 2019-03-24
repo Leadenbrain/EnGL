@@ -6,6 +6,6 @@
 #include "EnGL/Layer.h"
 #include "EnGL/Log.h"
 
-#include "EnGL/imGui/ImGuiLayer.h"
+#include "EnGL/ImGui/ImGuiLayer.h"
 
 #include "EnGL/EntryPoint.h"

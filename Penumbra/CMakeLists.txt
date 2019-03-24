@@ -9,7 +9,7 @@ link_libraries(glfw3dll)
 link_libraries(libglad.a)
 
 # Bring in Headers
-SET(INCLUDES "../EnGL/src/EnGL/eglpch.h ../EnGL/src/*.h ../EnGL/res/spdlog/include/spdlog/*.h")
+file(GLOB INCLUDES "../EnGL/src/EnGL/eglpch.h ../EnGL/src/*.h ../EnGL/res/spdlog/include/spdlog/*.h")
 include_directories(include ../EnGL/src ../EnGL/res/include)
 
 SET(PCH "../EnGL/src/EnGL/eglpch.cpp")
