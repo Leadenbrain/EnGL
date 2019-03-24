@@ -2,9 +2,9 @@ cmake_minimum_required(VERSION 2.8.9)
 project(EnGL)
 
 # Bring in Headers
-include_directories(include "res/include/" "src/Platform/OpenGL/" "src/")
+include_directories(include "res/include/" "src/")
 SET(INCLUDES "src/EnGL/eglpch.h")
-file(GLOB INCLUDES_ADD "res/spdlog/include/spdlog/*.h res/*/*.h src/Platform/OpenGL/*.h src/EnGL/ImGui/*.h")
+file(GLOB INCLUDES_ADD "res/spdlog/include/spdlog/*.h res/*/*.h src/*/*.h src/Platform/*/*.h src/EnGL/ImGui/*.h")
 LIST(APPEND ${INCLUDES} ${INCLUDES_ADD})
 
 #Libraries
@@ -28,6 +28,8 @@ endif (WIN32)
 if (UNIX)
 	add_definitions(-DEGL_PLATFORM_LINUX)
 endif (UNIX)
+
+SET(CMAKE_CXX_STANDARD 17)
 
 add_library (EnGL SHARED ${PCH} ${SOURCES} ${PLATFORM} ${RESOUCES} ${IMGUI} ${INCLUDES})
 #add_library (EnGL STATIC ${PCH} ${SOURCES} ${RESOUCES} ${INCLUDES})

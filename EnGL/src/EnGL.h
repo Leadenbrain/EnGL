@@ -6,6 +6,10 @@
 #include "EnGL/Layer.h"
 #include "EnGL/Log.h"
 
+#include "EnGL/Input.h"
+#include "EnGL/KeyCodes.h"
+#include "EnGL/MouseButtonCodes.h"
+
 #include "EnGL/ImGui/ImGuiLayer.h"
 
 #include "EnGL/EntryPoint.h"

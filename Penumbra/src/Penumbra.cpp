@@ -12,12 +12,19 @@ public:
 
 		void OnUpdate()
 		{
-			EGL_INFO("ExampleLayer::Update");
+			if (EnGL::Input::IsKeyPressed(EGL_KEY_TAB))
+				EGL_TRACE("Tab was pressed (poll)!");
 		}
 
 		void OnEvent(EnGL::Event& event)
 		{
-			EGL_TRACE("{0}", event);
+			if (event.GetEventType() == EnGL::EventType::KeyPressed)
+			{
+				EnGL::KeyPressedEvent& e = (EnGL::KeyPressedEvent&)event;
+				if (e.GetKeyCode() == EGL_KEY_TAB)
+					EGL_TRACE("Tab key is pressed (event)!");
+				EGL_TRACE("{0}", (char)e.GetKeyCode());
+			}
 		}
 };
 
