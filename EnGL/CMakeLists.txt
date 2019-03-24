@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 2.8.9)
 project(EnGL)
 
 # Bring in Headers
-include_directories(include "res/include/" "src/Platform/OpenGL/")
+include_directories(include "res/include/" "src/Platform/OpenGL/" "src/")
 SET(INCLUDES "src/EnGL/eglpch.h")
 file(GLOB INCLUDES_ADD "res/spdlog/include/spdlog/*.h res/*/*.h src/Platform/OpenGL/*.h src/EnGL/ImGui/*.h")
 LIST(APPEND ${INCLUDES} ${INCLUDES_ADD})

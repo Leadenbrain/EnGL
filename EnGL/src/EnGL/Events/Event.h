@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../eglpch.h"
-#include "../Core.h"
+#include "EnGL/eglpch.h"
+#include "EnGL/Core.h"
 
 namespace EnGL {
 
@@ -10,7 +10,7 @@ namespace EnGL {
 		None = 0,
 		WindowClose, WindowResize, WindowFocus, WindowLostFocus, WindowMoved,
 		AppTick, AppUpdate, AppRender,
-		KeyPressed, KeyReleased,
+		KeyPressed, KeyReleased, KeyTyped,
 		MouseButtonPressed, MouseButtonReleased, MouseMoved, MouseScrolled
 	};
 

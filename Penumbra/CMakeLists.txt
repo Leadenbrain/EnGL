@@ -10,9 +10,8 @@ link_libraries(libglad.a)
 
 # Bring in Headers
 file(GLOB INCLUDES "../EnGL/src/EnGL/eglpch.h ../EnGL/src/*.h ../EnGL/res/spdlog/include/spdlog/*.h")
-include_directories(include ../EnGL/src ../EnGL/res/include)
+include_directories(include ../EnGL/src/ ../EnGL/res/include/)
 
-SET(PCH "../EnGL/src/EnGL/eglpch.cpp")
 file(GLOB SOURCES "src/*.cpp")
 file(GLOB RESOURCES "res/*.cpp")
 
@@ -24,5 +23,5 @@ if (LINUX)
 	add_definitions(-DEGL_PLATFORM_LINUX)
 endif (LINUX)
 
-add_executable(Penumbra ${PCH} ${SOURCES} ${RESOUCES} ${INCLUDES})
+add_executable(Penumbra ${SOURCES} ${RESOUCES} ${INCLUDES})
 target_link_libraries(Penumbra ${PROJECT_LINK_LIBS})
