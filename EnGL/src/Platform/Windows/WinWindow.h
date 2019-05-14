@@ -1,6 +1,7 @@
 #pragma once
 
 #include "EnGL/Window.h"
+#include "EnGL/Renderer/GraphicsContext.h"
 #define GLFW_DLL
 #include <GLFW/glfw3.h>
 
@@ -27,6 +28,7 @@ namespace EnGL {
 		virtual void Shutdown();
 	private:
 		GLFWwindow* m_Window;
+		GraphicsContext* m_Context;
 
 		struct WindowData
 		{
