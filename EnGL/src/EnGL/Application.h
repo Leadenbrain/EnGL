@@ -6,6 +6,10 @@
 #include "Events/Event.h"
 #include "Events/ApplicationEvent.h"
 
+#include "EnGL/Renderer/Shader.h"
+#include "EnGL/Renderer/IndexBuffer.h"
+#include "EnGL/Renderer/VertexBuffer.h"
+
 namespace EnGL {
 	
 	class EGL_API Application
@@ -30,6 +34,7 @@ namespace EnGL {
 		LayerStack m_LayerStack;
 
 		unsigned int m_VertexArray, m_VertexBuffer, m_IndexBuffer;
+		std::unique_ptr<Shader> m_Shader;
 	private:
 		static Application* s_Instance;
 	};
