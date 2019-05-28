@@ -89,7 +89,7 @@ namespace EnGL {
 	}*/
 
 	Shader::Shader(const std::string& filepath)
-		: m_Filepath(filepath)
+		: m_Filepath(filepath), m_RendererID(0)
 	{
 		ShaderProgramSource source = ParseShader(filepath);
 		m_RendererID = CreateShader(source.vertexSrc, source.fragmentSrc);
@@ -102,7 +102,6 @@ namespace EnGL {
 
 	ShaderProgramSource Shader::ParseShader(const std::string& filepath)
 	{
-		EGL_CORE_INFO("FILEPATH: {0}", filepath);
 		std::ifstream stream(filepath);
 
 		enum class ShaderType
@@ -125,7 +124,6 @@ namespace EnGL {
 			else
 			{
 				ss[(int)type] << line << "\n";
-				EGL_CORE_INFO(line);
 			}
 		}
 
@@ -188,6 +186,23 @@ namespace EnGL {
 	void Shader::Unbind() const
 	{
 		glUseProgram(0);
+	}
+
+	void Shader::SetUniformMat4f(std::string& name, const glm::mat4 matrix)
+	{
+		glUniformMatrix4fv(GetUniformLocation(name), 1, GL_FALSE, &matrix[0][0]);
+	}
+
+	int Shader::GetUniformLocation(const std::string& name)
+	{
+		if (m_UniformLocationCache.find(name) != m_UniformLocationCache.end())
+			return m_UniformLocationCache[name];
+
+		int location = glGetUniformLocation(m_RendererID, name.c_str());
+		if (location == -1)
+			EGL_CORE_WARN("Warning: Uniform '{0}' doesn't exist!", name);
+		m_UniformLocationCache[name] = location;
+		return location;
 	}
 
 }

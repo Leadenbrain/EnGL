@@ -4,10 +4,12 @@
 layout(location = 0)in vec4 a_Position;
 out vec4 v_Position;
 
+uniform mat4 u_MVP;
+
 void main()
 {
-	gl_Position = a_Position;
-	v_Position = a_Position;
+	gl_Position = u_MVP * a_Position;
+	v_Position =  u_MVP *a_Position;
 }
 
 #shader fragment
@@ -53,7 +55,8 @@ vec4 ray_march(vec3 o, vec3 r, float sharpness) {
 
 void main()
 {
-	vec2 uv = 2*v_Position.xy-1.0;
+	//vec2 uv = 2*v_Position.xy-1.0;
+	vec2 uv = 0.5*v_Position.xy + 0.5;
 	vec3 r = normalize(vec3(uv, 1.0));
 		vec3 o = vec3(0.0,0.0,-2.0);
 	vec4 e = vec4(min_dist, 0.0,0.0,0.0);

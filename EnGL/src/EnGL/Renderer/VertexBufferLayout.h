@@ -1,11 +1,8 @@
 #pragma once
 
-#include "eglpch.h"
-//#include "renderer.h"
-//#include "Core.h" 	//Needed for EnGL Core Assert?
+#include "EnGL/eglpch.h"
 
-namespace EnGL {
-
+namespace EnGL{
 	struct VertexBufferElement
 	{
 		unsigned int type;
@@ -20,7 +17,7 @@ namespace EnGL {
 				case GL_UNSIGNED_INT: 	return 4;
 				case GL_UNSIGNED_BYTE: 	return 1;
 			}
-			EGL_CORE_ASSERT(false);
+			ASSERT(false);
 			return 0;
 		}
 	};
@@ -65,5 +62,4 @@ namespace EnGL {
 		m_Elements.push_back({GL_UNSIGNED_BYTE, count, GL_TRUE});
 		m_Stride += count * VertexBufferElement::GetSizeOfType(GL_UNSIGNED_BYTE);
 	}
-
 }

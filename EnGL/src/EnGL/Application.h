@@ -9,6 +9,8 @@
 #include "EnGL/Renderer/Shader.h"
 #include "EnGL/Renderer/IndexBuffer.h"
 #include "EnGL/Renderer/VertexBuffer.h"
+#include "EnGL/Renderer/VertexArray.h"
+#include "EnGL/Renderer/VertexBufferLayout.h"
 
 namespace EnGL {
 	
@@ -35,6 +37,8 @@ namespace EnGL {
 
 		unsigned int m_VertexArray, m_VertexBuffer, m_IndexBuffer;
 		std::unique_ptr<Shader> m_Shader;
+		std::unique_ptr<VertexBufferLayout> m_layout;
+
 	private:
 		static Application* s_Instance;
 	};
