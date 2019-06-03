@@ -10,11 +10,9 @@ namespace EnGL {
 		std::string fragmentSrc;
 	};
 
-	class Shader
+	class EGL_API Shader
 	{
-		
 	public:
-			//Shader(const std::string& vertexSrc, const std::string& fragmentSrc);
 			Shader(const std::string& filepath);
 			~Shader();
 

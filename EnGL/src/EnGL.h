@@ -13,3 +13,5 @@
 #include "EnGL/ImGui/ImGuiLayer.h"
 
 #include "EnGL/EntryPoint.h"
+
+#include "EnGL/Renderer/Shader.h"

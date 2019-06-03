@@ -20,8 +20,6 @@ namespace EnGL {
 		glGenVertexArrays(1, &m_VertexArray);
 		glBindVertexArray(m_VertexArray);
 
-		glGenBuffers(1, &m_VertexBuffer);
-		glBindBuffer(GL_ARRAY_BUFFER, m_VertexBuffer);
 
 		/*float vertices[3 * 3] = {
 			-1.0f, -1.0f, 0.0f,
@@ -55,13 +53,14 @@ namespace EnGL {
 		m_layout->Push<float>(2);
 		m_VertexArray->AddBuffer(m_VertexBuffer, m_layout);*/
 
-		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+		m_VertexBuffer.reset(VertexBuffer::Create(vertices, sizeof(vertices)));
 
 		glEnableVertexAttribArray(0);
 		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), nullptr);
 
-		unsigned int indices[6] = { 0, 1, 2, 2, 3, 0 };
-		IndexBuffer* m_IndexBuffer = new IndexBuffer(indices, 6);
+		uint32_t indices[6] = { 0, 1, 2, 2, 3, 0 };
+		//IndexBuffer* m_IndexBuffer = new IndexBuffer(indices, 6);
+		m_IndexBuffer.reset(IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
 
 		// std::string uName = "u_MVP";
 		m_Shader.reset(new Shader("../res/shaders/Raymarch.shader"));
@@ -114,7 +113,7 @@ namespace EnGL {
 			m_Shader->SetUniformMat4f(uName,mvp);
 
 			glBindVertexArray(m_VertexArray);
-			glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
+			glDrawElements(GL_TRIANGLES, m_IndexBuffer->GetCount(), GL_UNSIGNED_INT, nullptr);
 
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();

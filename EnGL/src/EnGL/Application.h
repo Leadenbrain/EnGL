@@ -7,10 +7,8 @@
 #include "Events/ApplicationEvent.h"
 
 #include "EnGL/Renderer/Shader.h"
-#include "EnGL/Renderer/IndexBuffer.h"
-#include "EnGL/Renderer/VertexBuffer.h"
-#include "EnGL/Renderer/VertexArray.h"
-#include "EnGL/Renderer/VertexBufferLayout.h"
+#include "EnGL/Renderer/Buffer.h"
+
 
 namespace EnGL {
 	
@@ -35,9 +33,10 @@ namespace EnGL {
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 
-		unsigned int m_VertexArray, m_VertexBuffer, m_IndexBuffer;
+		unsigned int m_VertexArray;
 		std::unique_ptr<Shader> m_Shader;
-		std::unique_ptr<VertexBufferLayout> m_layout;
+		std::unique_ptr<VertexBuffer> m_VertexBuffer;
+		std::unique_ptr<IndexBuffer> m_IndexBuffer;
 
 	private:
 		static Application* s_Instance;
