@@ -19,6 +19,7 @@ namespace EnGL {
 			void Bind() const;
 			void Unbind() const;
 			void SetUniformMat4f(std::string& name, const glm::mat4 matrix);
+			void SetUniform2f(std::string& name, float v0, float v1);
 
 	private:
 			uint32_t m_RendererID;

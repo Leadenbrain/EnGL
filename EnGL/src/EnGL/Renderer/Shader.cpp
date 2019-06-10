@@ -188,6 +188,12 @@ namespace EnGL {
 		glUseProgram(0);
 	}
 
+	void Shader::SetUniform2f(std::string& name, float v0, float v1)
+	{
+		glUniform2f(GetUniformLocation(name), v0, v1);
+	}
+
+
 	void Shader::SetUniformMat4f(std::string& name, const glm::mat4 matrix)
 	{
 		glUniformMatrix4fv(GetUniformLocation(name), 1, GL_FALSE, &matrix[0][0]);

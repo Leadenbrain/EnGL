@@ -19,10 +19,12 @@ layout(location = 0) out vec4 colour;
 
 in vec4 v_Position;
 
+uniform vec2 u_Move;
+
 float spheres(vec3 z)
 {
 	z = mod((z),1.0)-vec3(0.5);
-	return length(z)-0.1;
+	return length(z)-0.2;
 }
 
 float min_dist = 0.000005;
@@ -51,7 +53,7 @@ vec4 ray_march(vec3 o, vec3 r, float sharpness) {
 void main()
 {
 	//vec2 uv = 2*v_Position.xy-1.0;
-	vec2 uv = 0.5*v_Position.xy ;
+	vec2 uv = v_Position.xy+u_Move;
 	vec3 r = normalize(vec3(uv, 1.0));
 		vec3 o = vec3(0.0,0.0,-2.0);
 	vec4 e = vec4(min_dist, 0.0,0.0,0.0);

@@ -2,6 +2,7 @@
 
 #include "Core.h"
 #include "Events/Event.h"
+#include "EnGL/Renderer/Shader.h"
 
 namespace EnGL {
 	
@@ -19,5 +20,6 @@ namespace EnGL {
 		inline const std::string& GetName() const { return m_DebugName; }
 	protected:
 		std::string m_DebugName;
+		std::unique_ptr<Shader> m_Shader;
 	};
 }

@@ -1,6 +1,8 @@
 #include <EnGL/eglpch.h>
 #include <EnGL.h>
 #include <EnGL/Renderer/Shader.h>
+#include <EnGL/Application.h>
+
 
 
 class ExampleLayer : public EnGL::Layer
@@ -14,8 +16,8 @@ public:
 
 		void OnUpdate()
 		{
-			glm::mat4 proj = glm::ortho(0.0f, 1920.0f, 0.0f, 1080.0f, 0.0f, 1.0f);
-			std::string uName = "u_MVP";
+			/*glm::mat4 proj = glm::ortho(0.0f, 1920.0f, 0.0f, 1080.0f, 0.0f, 1.0f);
+			std::string uName = "u_MVP";*/
 			//m_Shader->SetUniformMat4f(uName,proj);
 
 			if (EnGL::Input::IsKeyPressed(EGL_KEY_TAB))
