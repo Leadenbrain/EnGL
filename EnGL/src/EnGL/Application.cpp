@@ -97,7 +97,7 @@ namespace EnGL {
 		m_IndexBuffer.reset(IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
 
 		std::string uName = "u_MVP";
-		m_Shader.reset(new Shader("../res/shaders/Raymarch.shader"));
+		m_Shader.reset(new Shader("../res/shaders/Snake.shader"));
 		m_Shader->SetUniformMat4f(uName, mvp);
 
 	}
@@ -134,36 +134,23 @@ namespace EnGL {
 
 	void Application::Run()
 	{
+		Shader* shader = nullptr;
+		Window* window = nullptr;
+
 		while (m_Running)
 		{
 			glClearColor(0.1f, 0.1f, 0.1f, 1);
 			glClear(GL_COLOR_BUFFER_BIT);
-
-			WindowProps props = WindowProps();
-
-
-			float WinWidth = m_Window->GetWidth();
-			float WinHeight = m_Window->GetHeight();
-			float y_trans = (props.Height - WinHeight)/props.Height;
-			float x_trans = (props.Width - WinWidth)/props.Width;
-
-			glm::mat4 view = glm::translate(glm::mat4(), glm::vec3(0.0f, 0.0f ,0.0f));
-			glm::mat4 proj = glm::ortho(0.0f, WinWidth, 0.0f, WinHeight, -1.0f, 1.0f);
-			glm::mat4 mvp = proj*view;
 			
-
-			std::string uName1 = "u_MVP";
-			std::string uName2 = "u_Move";
-
 			m_Shader->Bind();
-			m_Shader->SetUniformMat4f(uName1,mvp);
-			m_Shader->SetUniform2f(uName2,x_trans,y_trans);
-
 			glBindVertexArray(m_VertexArray);
 			glDrawElements(GL_TRIANGLES, m_IndexBuffer->GetCount(), GL_UNSIGNED_INT, nullptr);
 
+			shader = m_Shader.get();
+			window = m_Window.get();
+
 			for (Layer* layer : m_LayerStack)
-				layer->OnUpdate();
+				layer->OnUpdate(window, shader);
 			m_Window->OnUpdate();
 		}
 	}

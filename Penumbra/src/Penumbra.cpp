@@ -1,27 +1,100 @@
 #include <EnGL/eglpch.h>
 #include <EnGL.h>
+#include <EnGL/Window.h>
 #include <EnGL/Renderer/Shader.h>
 #include <EnGL/Application.h>
+#include <ctime>
 
 
 
 class ExampleLayer : public EnGL::Layer
 {
 public:
+	float x_move = 0.0;
+	float y_move = 0.0;
+	float x_trans = 0.0;
+	float y_trans = 0.0;
+	float trans = 0.0;
+	float u_Z = 0.0;
+	float u_X = 0.0;
+
+
+
+		std::clock_t start =  std::clock();
+		float duration;
+
+
 	ExampleLayer()
 		: Layer("Example")
 		{
 
 		}
 
-		void OnUpdate()
+		void OnUpdate(EnGL::Window* window, EnGL::Shader* shader)
 		{
-			/*glm::mat4 proj = glm::ortho(0.0f, 1920.0f, 0.0f, 1080.0f, 0.0f, 1.0f);
-			std::string uName = "u_MVP";*/
-			//m_Shader->SetUniformMat4f(uName,proj);
+			EnGL::WindowProps props = EnGL::WindowProps();
+			float WinHeight = window->GetHeight();
+			float WinWidth = window->GetWidth();
+			y_trans = (props.Height - WinHeight)/props.Height;
+			x_trans = (props.Width - WinWidth)/props.Width;
 
-			if (EnGL::Input::IsKeyPressed(EGL_KEY_TAB))
-				EGL_TRACE("Tab was pressed (poll)!");
+			duration = (std::clock() - start);
+
+			std::string dump = "u_Time";
+
+			glm::mat4 view = glm::translate(glm::mat4(), glm::vec3(trans, 0.0f ,0.0f));
+			glm::mat4 proj = glm::ortho(0.0f, WinWidth, 0.0f, WinHeight, 0.0f, 1.0f);
+			glm::mat4 mvp = view * proj;
+			std::string uName1 = "u_MVP";
+			std::string uName2 = "u_Z"; 
+			std::string uName3 = "u_Move";
+			std::string uName4 = "u_X";
+			shader->SetUniform1f(dump, duration*0.001);
+			shader->SetUniformMat4f(uName1,mvp);
+			shader->SetUniform1f(uName2, u_Z);
+			shader->SetUniform1f(uName4, u_X);
+			shader->SetUniform2f(uName3,x_trans+x_move,y_trans+y_move);
+
+			if (EnGL::Input::IsKeyPressed(EGL_KEY_W)){
+				EGL_TRACE("W was pressed (poll)!");
+				u_Z += 0.1;
+			}
+
+			if (EnGL::Input::IsKeyPressed(EGL_KEY_S)){
+				EGL_TRACE("W was pressed (poll)!");
+				u_Z -= 0.1;
+			}
+
+			if (EnGL::Input::IsKeyPressed(EGL_KEY_A)){
+				EGL_TRACE("W was pressed (poll)!");
+				u_X += 0.1;
+			}
+
+			if (EnGL::Input::IsKeyPressed(EGL_KEY_D)){
+				EGL_TRACE("W was pressed (poll)!");
+				u_X -= 0.1;
+			}
+
+			if (EnGL::Input::IsKeyPressed(EGL_KEY_LEFT)){
+				EGL_TRACE("Left was pressed (poll)!");
+				x_move += 0.01;
+			}
+
+			if (EnGL::Input::IsKeyPressed(EGL_KEY_RIGHT)){
+				EGL_TRACE("Right was pressed (poll)!");
+				x_move -= 0.01;
+			}
+
+			if (EnGL::Input::IsKeyPressed(EGL_KEY_UP)){
+				EGL_TRACE("Up was pressed (poll)!");
+				y_move += 0.01;
+			}
+
+			if (EnGL::Input::IsKeyPressed(EGL_KEY_DOWN)){
+				EGL_TRACE("Down was pressed (poll)!");
+				y_move -= 0.01;
+			}
+
 		}
 
 		void OnEvent(EnGL::Event& event)
