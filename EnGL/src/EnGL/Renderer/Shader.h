@@ -21,6 +21,7 @@ namespace EnGL {
 			void SetUniform1f (const std::string& name, float value);
 			void SetUniform2f(std::string& name, float v0, float v1);
 			void SetUniformMat4f(std::string& name, const glm::mat4 matrix);
+			void ScreenDump(const char* filename, short W, short H);
 
 	private:
 			uint32_t m_RendererID;

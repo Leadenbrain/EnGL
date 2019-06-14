@@ -6,6 +6,7 @@ link_directories( ../EnGL/build )
 link_directories("C:\\MinGW\\mingw64\\lib")
 link_libraries(opengl32)
 link_libraries(glfw3dll)
+link_libraries(freeimage)
 link_libraries(libglad.a)
 
 # Bring in Headers

@@ -1,5 +1,6 @@
 #include <EnGL/eglpch.h>
 #include <EnGL.h>
+#include <FreeImage/FreeImage.h>
 #include <EnGL/Window.h>
 #include <EnGL/Renderer/Shader.h>
 #include <EnGL/Application.h>
@@ -17,7 +18,9 @@ public:
 	float trans = 0.0;
 	float u_Z = 0.0;
 	float u_X = 0.0;
-
+	bool SCRSHT = false;
+	int scr_ind = 0;
+	char intStr[50];
 
 
 		std::clock_t start =  std::clock();
@@ -38,9 +41,22 @@ public:
 			y_trans = (props.Height - WinHeight)/props.Height;
 			x_trans = (props.Width - WinWidth)/props.Width;
 
-			duration = (std::clock() - start);
+			if (!SCRSHT)
+			{
+				duration = (std::clock() - start);
+			}
+			else {
+				duration += 20;
+			}
+			
 
 			std::string dump = "u_Time";
+			std::string extension = ".jpg";
+
+			std::sprintf(intStr, "%d", scr_ind);
+			std::string str = std::string(intStr);
+
+			std::string Screenshot_str = "Screenshot_"+str+extension;
 
 			glm::mat4 view = glm::translate(glm::mat4(), glm::vec3(trans, 0.0f ,0.0f));
 			glm::mat4 proj = glm::ortho(0.0f, WinWidth, 0.0f, WinHeight, 0.0f, 1.0f);
@@ -54,10 +70,15 @@ public:
 			shader->SetUniform1f(uName2, u_Z);
 			shader->SetUniform1f(uName4, u_X);
 			shader->SetUniform2f(uName3,x_trans+x_move,y_trans+y_move);
+			if (SCRSHT) {
+				shader->ScreenDump(Screenshot_str.c_str(),1920,1080);
+				scr_ind += 1; 
+			}
 
 			if (EnGL::Input::IsKeyPressed(EGL_KEY_W)){
 				EGL_TRACE("W was pressed (poll)!");
 				u_Z += 0.1;
+
 			}
 
 			if (EnGL::Input::IsKeyPressed(EGL_KEY_S)){
@@ -102,8 +123,10 @@ public:
 			if (event.GetEventType() == EnGL::EventType::KeyPressed)
 			{
 				EnGL::KeyPressedEvent& e = (EnGL::KeyPressedEvent&)event;
-				if (e.GetKeyCode() == EGL_KEY_TAB)
+				if (e.GetKeyCode() == EGL_KEY_TAB){
 					EGL_TRACE("Tab key is pressed (event)!");
+					SCRSHT = !SCRSHT;
+				}
 				EGL_TRACE("{0}", (char)e.GetKeyCode());
 			}
 		}

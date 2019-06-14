@@ -1,4 +1,5 @@
 #include "EnGL/eglpch.h"
+#include <FreeImage/FreeImage.h>
 #include "Shader.h"
 
 #include <glad/glad.h>
@@ -132,5 +133,25 @@ namespace EnGL {
 		m_UniformLocationCache[name] = location;
 		return location;
 	}
+
+	void Shader::ScreenDump(const char* filename, short W, short H) {
+	FILE* out = fopen("output.tga","wb");
+
+	char* pixel_data = new char[3*W*H];
+	short TGAhead[] = { 0, 2, 0, 0, 0, 0, W, H, 24 };
+
+	glReadBuffer(GL_FRONT);
+	glReadPixels(0, 0, W, H, GL_BGR, GL_UNSIGNED_BYTE, pixel_data);
+
+	fwrite(&TGAhead, sizeof(TGAhead), 1, out);
+	fwrite(pixel_data, 3*W*H, 1, out);
+	fclose(out);
+
+	delete[] pixel_data; 
+
+	FIBITMAP* bitmap = FreeImage_Load(FIF_TARGA, "output.tga", TARGA_DEFAULT); 
+
+	FreeImage_Save(FIF_JPEG, bitmap, filename, 0);
+}
 
 }
