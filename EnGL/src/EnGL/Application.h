@@ -8,6 +8,7 @@
 
 #include "EnGL/Renderer/Shader.h"
 #include "EnGL/Renderer/Buffer.h"
+#include "EnGL/Renderer/VertexArray.h"
 
 
 namespace EnGL {
@@ -29,15 +30,15 @@ namespace EnGL {
 	private:
 		bool OnWindowClose(WindowCloseEvent& e);
 		
-		std::unique_ptr<Window> m_Window;
+		std::shared_ptr<Window> m_Window;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 
-		unsigned int m_VertexArray;
-		std::unique_ptr<Shader> m_Shader;
-		std::unique_ptr<VertexBuffer> m_VertexBuffer;
-		std::unique_ptr<IndexBuffer> m_IndexBuffer;
+		std::shared_ptr<Shader> m_Shader;
+		std::shared_ptr<VertexArray> m_VertexArray;
 
+		std::shared_ptr<Shader> m_SquareShader;
+		std::shared_ptr<VertexArray> m_SquareVA;
 	private:
 		static Application* s_Instance;
 	};

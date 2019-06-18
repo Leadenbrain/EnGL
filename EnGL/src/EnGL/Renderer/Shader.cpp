@@ -147,9 +147,9 @@ namespace EnGL {
 	fwrite(pixel_data, 3*W*H, 1, out);
 	fclose(out);
 
-	delete[] pixel_data; 
 
 	FIBITMAP* bitmap = FreeImage_Load(FIF_TARGA, "output.tga", TARGA_DEFAULT); 
+	delete[] pixel_data; 
 
 	FreeImage_Save(FIF_JPEG, bitmap, filename, 0);
 }

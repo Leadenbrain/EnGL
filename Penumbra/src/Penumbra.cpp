@@ -19,12 +19,13 @@ public:
 	float u_Z = 0.0;
 	float u_X = 0.0;
 	bool SCRSHT = false;
+	bool PAUSE = false;
 	int scr_ind = 0;
 	char intStr[50];
 
 
-		std::clock_t start =  std::clock();
-		float duration;
+	std::clock_t start =  std::clock();
+	float duration;
 
 
 	ExampleLayer()
@@ -33,7 +34,7 @@ public:
 
 		}
 
-		void OnUpdate(EnGL::Window* window, EnGL::Shader* shader)
+		void OnUpdate(std::shared_ptr<EnGL::Window> window, std::shared_ptr<EnGL::Shader> shader)
 		{
 			EnGL::WindowProps props = EnGL::WindowProps();
 			float WinHeight = window->GetHeight();
@@ -41,12 +42,16 @@ public:
 			y_trans = (props.Height - WinHeight)/props.Height;
 			x_trans = (props.Width - WinWidth)/props.Width;
 
-			if (!SCRSHT)
+			if (PAUSE) {
+				start += (std::clock() - start) - duration;
+			}
+			else if(!SCRSHT)
 			{
 				duration = (std::clock() - start);
 			}
 			else {
-				duration += 20;
+				duration += 16;
+				start += (std::clock() - start) - duration;
 			}
 			
 
@@ -126,6 +131,16 @@ public:
 				if (e.GetKeyCode() == EGL_KEY_TAB){
 					EGL_TRACE("Tab key is pressed (event)!");
 					SCRSHT = !SCRSHT;
+				}
+				EGL_TRACE("{0}", (char)e.GetKeyCode());
+			}
+
+			if (event.GetEventType() == EnGL::EventType::KeyPressed)
+			{
+				EnGL::KeyPressedEvent& e = (EnGL::KeyPressedEvent&)event;
+				if (e.GetKeyCode() == EGL_KEY_SPACE){
+					EGL_TRACE("Space key is pressed (event)!");
+					PAUSE = !PAUSE;
 				}
 				EGL_TRACE("{0}", (char)e.GetKeyCode());
 			}
