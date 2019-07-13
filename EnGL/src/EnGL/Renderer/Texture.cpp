@@ -10,8 +10,8 @@ namespace EnGL {
 
 		switch (Renderer::GetAPI())
 		{
-			case RendererAPI::None:			EGL_CORE_ASSERT(false, "RendererAPI::None is not supported"); return nullptr;
-			case RendererAPI::OpenGL:		return new OpenGLTexture(m_TexPath);
+			case RendererAPI::API::None:			EGL_CORE_ASSERT(false, "RendererAPI::None is not supported"); return nullptr;
+			case RendererAPI::API::OpenGL:		return new OpenGLTexture(m_TexPath);
 		}
 
 		EGL_CORE_ASSERT(false, "Unknown RendererAPI");

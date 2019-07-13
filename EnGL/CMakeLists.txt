@@ -8,10 +8,6 @@ file(GLOB INCLUDES_ADD "res/spdlog/include/spdlog/*.h res/*/*.h src/*/*.h src/*/
 LIST(APPEND ${INCLUDES} ${INCLUDES_ADD})
 
 #Libraries
-link_directories("C:\\MinGW\\mingw64\\lib")
-link_libraries(opengl32)
-link_libraries(glfw3dll)
-link_libraries(libglad.a)
 
 SET(PCH "src/EnGL/eglpch.cpp")
 file(GLOB SOURCES "src/*/*.cpp")
@@ -20,13 +16,20 @@ file(GLOB RESOURCES "res/*.cpp")
 file(GLOB IMGUI "res/imgui/*.cpp")
 
 if (WIN32)
+	link_directories("C:\\MinGW\\mingw64\\lib")
 	add_definitions(-DEGL_PLATFORM_WINDOWS)
 	add_definitions(-DEGL_BUILD_DLL)
+	link_libraries(glfw3dll)
 endif (WIN32)
+
+link_libraries(opengl32)
+link_libraries(freeimage)
+link_libraries(libglad.a)
 
 # Haven't tested, is CMAKE_SYSTEM_NAME better here?
 if (UNIX)
 	add_definitions(-DEGL_PLATFORM_LINUX)
+	link_libraries(glfw3dll)
 endif (UNIX)
 
 SET(CMAKE_CXX_STANDARD 17)
@@ -35,4 +38,4 @@ add_library (EnGL SHARED ${PCH} ${SOURCES} ${PLATFORM} ${RESOUCES} ${IMGUI} ${IN
 #add_library (EnGL STATIC ${PCH} ${SOURCES} ${RESOUCES} ${INCLUDES})
 
 install(TARGETS EnGL DESTINATION ${CMAKE_CURRENT_SOURCE_DIR}/../Penumbra/build)
-install(TARGETS EnGL DESTINATION "C:\\MinGW\\mingw64\\lib")
+#install(TARGETS EnGL DESTINATION "C:\\MinGW\\mingw64\\lib")

@@ -65,7 +65,7 @@ namespace EnGL {
 		}
 	};
 
-	class BufferLayout
+	class EGL_API BufferLayout
 	{
 	public:
 		BufferLayout() {}
@@ -100,7 +100,7 @@ namespace EnGL {
 		uint32_t m_Stride = 0;
 	};
 
-	class VertexBuffer
+	class EGL_API VertexBuffer
 	{
 	public:
 			virtual ~VertexBuffer() {};
@@ -114,7 +114,7 @@ namespace EnGL {
 			static VertexBuffer* Create(float* vertices, uint32_t size); 
 	};
 
-	class IndexBuffer
+	class EGL_API IndexBuffer
 	{
 	public:	
 			virtual ~IndexBuffer() {}

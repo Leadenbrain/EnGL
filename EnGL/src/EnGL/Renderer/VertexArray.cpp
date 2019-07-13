@@ -10,8 +10,8 @@ namespace EnGL {
 	{
 		switch (Renderer::GetAPI())
 		{
-			case RendererAPI::None:		EGL_CORE_ASSERT(false, "RendererAPI not supported");
-			case RendererAPI::OpenGL:	return new OpenGLVertexArray();
+			case RendererAPI::API::None:		EGL_CORE_ASSERT(false, "RendererAPI not supported");
+			case RendererAPI::API::OpenGL:		return new OpenGLVertexArray();
 		}
 
 		EGL_CORE_ASSERT(false, "Unknown Renderer API");

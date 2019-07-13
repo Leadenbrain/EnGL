@@ -15,7 +15,7 @@ namespace EnGL {
 
 		virtual void OnAttach() {}
 		virtual void OnDetach() {}
-		virtual void OnUpdate(std::shared_ptr<Window> m_Window, std::shared_ptr<Shader> m_Shader) {}
+		virtual void OnUpdate(std::shared_ptr<Window> window) {}
 		virtual void OnEvent(Event& event) {}
 
 		inline const std::string& GetName() const { return m_DebugName; }
