@@ -41,9 +41,7 @@ public:
 
 	ExampleLayer()
 		: Layer("Example")
-		{
-			// std::shared_ptr<EnGL::Shader> m_SquareShader;
-			
+		{	
 			m_SquareVA.reset(EnGL::VertexArray::Create());
 
 			EnGL::WindowProps props = EnGL::WindowProps();
@@ -60,8 +58,6 @@ public:
 				0.0f,  WinHeight, 0.0f
 			};
 
-			
-			// squareVB.reset(EnGL::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
 			squareVB.reset(EnGL::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
 
 			squareVB->SetLayout({
@@ -83,12 +79,6 @@ public:
 			m_SquareShader->Bind();
 			EnGL::Renderer::Submit(m_SquareVA);
 			EnGL::Renderer::EndScene();
-			//m_SquareVA->Bind();
-			// glClearColor(0.1f, 0.1f, 0.1f, 1);
-			// glClear(GL_COLOR_BUFFER_BIT);
-
-			// glDrawElements(GL_TRIANGLES, m_SquareVA->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr);
-
 		}
 
 		void OnUpdate(std::shared_ptr<EnGL::Window> window)
@@ -104,7 +94,7 @@ public:
 			}
 			else if(SCRSHT)
 			{
-				duration += 16;
+				duration += 1.0f/60.0f*1000.0f;
 				start += (std::clock() - start) - duration;
 			}
 			else {
@@ -180,11 +170,6 @@ public:
 			m_SquareShader->Bind();
 			EnGL::Renderer::Submit(m_SquareVA);
 			EnGL::Renderer::EndScene();
-			//m_SquareVA->Bind();
-			// EGL_TRACE(m_SquareVA->GetIndexBuffer()->GetCount());
-			// glDrawElements(GL_TRIANGLES, m_SquareVA->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr);
-
-
 		}
 
 		void OnEvent(EnGL::Event& event)

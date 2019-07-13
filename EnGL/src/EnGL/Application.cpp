@@ -55,9 +55,6 @@ namespace EnGL {
 
 	void Application::Run()
 	{
-		
-
-		WindowProps props = WindowProps();	
 
 		while (m_Running)
 		{
@@ -72,8 +69,6 @@ namespace EnGL {
 				}
 			m_Window->OnUpdate();
 
-
-			// ScreenDump(1920,1080);
 		}
 	}
 
